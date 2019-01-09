@@ -4,17 +4,24 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.duanjiefei.github.moocshop.R;
+import com.duanjiefei.github.moocshop.http.RequestCenter;
+import com.commonsdk.okhttp.response.ResposeHandleListener;
+
+import modle.UserBean;
 
 public class HomeFragment extends BaseFragment{
 
     private static  final String TAG = "HomeFragment";
 
     private View homeContent;
+    private TextView home_TextView;
 
     @Override
     public void onAttach(Context context) {
@@ -31,6 +38,7 @@ public class HomeFragment extends BaseFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();
         homeContent = inflater.inflate(R.layout.fragment_home,container,false);
+        home_TextView = homeContent.findViewById(R.id.home_text);
         return homeContent;
     }
 
@@ -47,6 +55,19 @@ public class HomeFragment extends BaseFragment{
     @Override
     public void onResume() {
         super.onResume();
+        RequestCenter.SendUserRequest(new ResposeHandleListener() {
+            @Override
+            public void onResponseFailure(Object object) {
+                Log.d(TAG, "onResponseFailure: ");
+            }
+
+            @Override
+            public void onResponseSucess(Object object) {
+                Log.d(TAG, "onResponseSucess: ");
+                UserBean user  = (UserBean) object;
+                home_TextView.setText(user.data.name);
+            }
+        });
     }
 
     @Override

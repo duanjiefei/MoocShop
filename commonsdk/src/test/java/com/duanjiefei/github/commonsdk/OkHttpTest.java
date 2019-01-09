@@ -1,9 +1,7 @@
 package com.duanjiefei.github.commonsdk;
 
-import android.util.Log;
-
-import com.request.CommonRequest;
-import com.request.RequestParams;
+import com.commonsdk.okhttp.request.CommonRequest;
+import com.commonsdk.okhttp.request.RequestParams;
 
 import org.junit.Test;
 
@@ -12,16 +10,11 @@ import java.io.IOException;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
-import okio.BufferedSink;
 
 public class OkHttpTest {
 

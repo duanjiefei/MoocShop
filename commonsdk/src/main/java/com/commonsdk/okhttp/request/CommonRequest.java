@@ -1,4 +1,4 @@
-package com.request;
+package com.commonsdk.okhttp.request;
 
 import java.util.Map;
 
