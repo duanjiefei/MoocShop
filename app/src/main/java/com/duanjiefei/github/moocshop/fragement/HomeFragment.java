@@ -14,7 +14,7 @@ import com.duanjiefei.github.moocshop.R;
 import com.duanjiefei.github.moocshop.http.RequestCenter;
 import com.commonsdk.okhttp.response.ResposeHandleListener;
 
-import modle.UserBean;
+import com.duanjiefei.github.moocshop.bean.user.UserBean;
 
 public class HomeFragment extends BaseFragment{
 

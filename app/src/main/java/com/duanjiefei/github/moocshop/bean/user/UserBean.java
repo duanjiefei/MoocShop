@@ -1,5 +1,4 @@
-package modle;
-
+package com.duanjiefei.github.moocshop.bean.user;
 
 
 public class UserBean {

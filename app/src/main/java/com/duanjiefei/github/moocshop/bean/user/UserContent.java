@@ -1,4 +1,4 @@
-package modle;
+package com.duanjiefei.github.moocshop.bean.user;
 
 public class UserContent {
     public String userId; //用户唯一标识符

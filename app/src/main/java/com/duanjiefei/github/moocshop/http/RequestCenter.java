@@ -1,7 +1,7 @@
 package com.duanjiefei.github.moocshop.http;
 
 
-import modle.UserBean;
+import com.duanjiefei.github.moocshop.bean.user.UserBean;
 import com.commonsdk.okhttp.listener.DataProcessListener;
 import com.commonsdk.okhttp.response.ResposeHandleListener;
 
