@@ -44,7 +44,7 @@ public class CommonOkHttpManager {
     public static Call sendGetRequest(Request request, DataProcessListener dataProcessListener){
         Call call = mOkHttpManager.newCall(request);
         call.enqueue(new CommonJsonCallBack(dataProcessListener));
-        return  call;
+        return call;
     }
 
     public static Call sendPostRequest(Request request, DataProcessListener dataProcessListener){

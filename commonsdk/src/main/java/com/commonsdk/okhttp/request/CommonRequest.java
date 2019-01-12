@@ -51,11 +51,12 @@ public class CommonRequest {
         }
 
         Headers requestHeader =  headBuilder.build();
-
-        return new Request.Builder()
+        Request request = new Request.Builder()
                 .headers(requestHeader)
                 .url(urlBuilder.substring(0,urlBuilder.length()-1))
+                .get()
                 .build();
+        return request;
 
     }
 

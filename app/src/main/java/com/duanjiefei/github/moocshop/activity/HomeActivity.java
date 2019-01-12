@@ -4,12 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.duanjiefei.github.moocshop.R;
 import com.duanjiefei.github.moocshop.activity.base.BaseActivity;
@@ -18,13 +16,6 @@ import com.duanjiefei.github.moocshop.fragement.MessageFragment;
 import com.duanjiefei.github.moocshop.fragement.MineFragment;
 import com.duanjiefei.github.moocshop.fragement.PondFragment;
 
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
