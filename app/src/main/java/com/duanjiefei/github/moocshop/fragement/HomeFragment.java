@@ -20,6 +20,7 @@ import com.duanjiefei.github.moocshop.http.RequestCenter;
 import com.commonsdk.okhttp.response.ResposeHandleListener;
 
 import com.duanjiefei.github.moocshop.bean.user.UserBean;
+import com.duanjiefei.github.moocshop.utils.GlideImageUtils;
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener,AdapterView.OnItemClickListener {
 
@@ -68,8 +69,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
         mHomeListView.setOnItemClickListener(this);
 
         mLoadingView = homeContent.findViewById(R.id.loading);
-        AnimationDrawable animationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
-        animationDrawable.start();
+//        AnimationDrawable animationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
+//        animationDrawable.start();
     }
 
     @Override
@@ -126,6 +127,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
                 Log.d(TAG, "onResponseSucess: ");
                 RequestHomeData requestHomeData = (RequestHomeData) object;
                 Log.d(TAG, "onResponseSucess: "+requestHomeData.data.list.get(0).price);
+                GlideImageUtils.showImageView(mContext,R.drawable.bg_1_a_01,"http://img.mukewang.com/54bf7e1f000109c506000338-590-330.jpg",mLoadingView);
             }
         });
     }
