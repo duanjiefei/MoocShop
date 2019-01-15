@@ -14,7 +14,7 @@ import com.commonsdk.okhttp.request.RequestParams;
 public class RequestCenter {
 
     private static  String USER_URL = "http://www.mocky.io/v2/5c36035e300000780021b746";
-    private static  String HOME_REQUEST_URL = "http://www.mocky.io/v2/5c3a018c2f00002c00b5dbe4";
+    private static  String HOME_REQUEST_URL = "http://www.mocky.io/v2/5c3dfa4635000055003e96df";
 
 
     public static void SendRequest(String url, RequestParams params, ResposeHandleListener listener,Class clz){

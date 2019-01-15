@@ -13,8 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duanjiefei.github.moocshop.R;
+import com.duanjiefei.github.moocshop.adapter.CourseAdapter;
+import com.duanjiefei.github.moocshop.bean.home.RequestData;
 import com.duanjiefei.github.moocshop.bean.home.RequestHomeData;
 import com.duanjiefei.github.moocshop.http.RequestCenter;
 import com.commonsdk.okhttp.response.ResposeHandleListener;
@@ -35,6 +38,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
     private TextView mCategoryView;
     private ImageView mLoadingView;
     private ListView mHomeListView;
+
+    private RequestHomeData  requestHomeData;
 
 
     @Override
@@ -69,8 +74,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
         mHomeListView.setOnItemClickListener(this);
 
         mLoadingView = homeContent.findViewById(R.id.loading);
-//        AnimationDrawable animationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
-//        animationDrawable.start();
+        AnimationDrawable animationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
+        animationDrawable.start();
     }
 
     @Override
@@ -120,16 +125,32 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
             @Override
             public void onResponseFailure(Object object) {
                 Log.d(TAG, "onResponseFailure: ");
+                showErrorView();
             }
 
             @Override
             public void onResponseSucess(Object object) {
                 Log.d(TAG, "onResponseSucess: ");
-                RequestHomeData requestHomeData = (RequestHomeData) object;
-                Log.d(TAG, "onResponseSucess: "+requestHomeData.data.list.get(0).price);
-                GlideImageUtils.showImageView(mContext,R.drawable.bg_1_a_01,"http://img.mukewang.com/54bf7e1f000109c506000338-590-330.jpg",mLoadingView);
+                showSuccessView();
+                requestHomeData = (RequestHomeData) object;
+
             }
         });
+    }
+
+    //显示请求成功UI
+    private void showSuccessView() {
+        if (requestHomeData.data.list != null && requestHomeData.data.list.size() > 0) {
+            mLoadingView.setVisibility(View.GONE);
+            mHomeListView.setVisibility(View.VISIBLE);
+            //为listview添加头
+            CourseAdapter courseAdapter = new CourseAdapter(requestHomeData.data.list, mContext);
+            mHomeListView.setAdapter(courseAdapter);
+        }
+    }
+
+    private void showErrorView() {
+        Toast.makeText(mContext,"数据获取失败",Toast.LENGTH_LONG).show();
     }
     @Override
     public void onClick(View v) {
