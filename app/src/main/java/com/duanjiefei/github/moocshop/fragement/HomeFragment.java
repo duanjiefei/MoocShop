@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.duanjiefei.github.moocshop.R;
 import com.duanjiefei.github.moocshop.adapter.CourseAdapter;
+import com.duanjiefei.github.moocshop.bean.home.DataList;
 import com.duanjiefei.github.moocshop.bean.home.RequestData;
 import com.duanjiefei.github.moocshop.bean.home.RequestHomeData;
 import com.duanjiefei.github.moocshop.http.RequestCenter;
@@ -24,6 +25,8 @@ import com.commonsdk.okhttp.response.ResposeHandleListener;
 
 import com.duanjiefei.github.moocshop.bean.user.UserBean;
 import com.duanjiefei.github.moocshop.utils.GlideImageUtils;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener,AdapterView.OnItemClickListener {
 
@@ -131,9 +134,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
             @Override
             public void onResponseSucess(Object object) {
                 Log.d(TAG, "onResponseSucess: ");
-                showSuccessView();
                 requestHomeData = (RequestHomeData) object;
-
+                showSuccessView();
             }
         });
     }
@@ -144,9 +146,20 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
             mLoadingView.setVisibility(View.GONE);
             mHomeListView.setVisibility(View.VISIBLE);
             //为listview添加头
-            CourseAdapter courseAdapter = new CourseAdapter(requestHomeData.data.list, mContext);
+            CourseAdapter courseAdapter = new CourseAdapter(addData(), mContext);
             mHomeListView.setAdapter(courseAdapter);
         }
+    }
+
+    private ArrayList<DataList> addData() {
+        ArrayList<DataList> addData = new ArrayList<>();
+        int size = requestHomeData.data.list.size();
+        for (int j = 0; j<10; j++){
+            for (int i = 0; i < size;i++){
+                addData.add(requestHomeData.data.list.get(i));
+            }
+        }
+        return addData;
     }
 
     private void showErrorView() {

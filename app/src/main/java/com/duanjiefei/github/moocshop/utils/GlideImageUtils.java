@@ -36,7 +36,7 @@ public class GlideImageUtils {
      * @param url      图片链接
      * @param imgeview 组件
      */
-    public static void showImageView(Context context, int errorimg, String url,
+    public  void showImageView(Context context, int errorimg, String url,
                                      ImageView imgeview) {
 
         RequestOptions options = new RequestOptions()
