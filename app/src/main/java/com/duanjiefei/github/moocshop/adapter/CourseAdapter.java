@@ -1,14 +1,17 @@
 package com.duanjiefei.github.moocshop.adapter;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.BaseAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.duanjiefei.github.moocshop.R;
@@ -87,11 +90,17 @@ public class CourseAdapter extends BaseAdapter {
                 case CARD_VIDEO_TYPE:
                     //显示video卡片
                     viewHolder = new ViewHolder();
-                    convertView = inflater.inflate(R.layout.item_video_layout, parent, false);
+                    convertView = inflater.inflate(R.layout.item_video_layout, null, false);
+                    viewHolder.itemInfoView  = convertView.findViewById(R.id.item_info_view);
+                    viewHolder.share_view = convertView.findViewById(R.id.item_share_view);
+                    viewHolder.itemTitleView = convertView.findViewById(R.id.item_title_view);
+                    viewHolder.circleImageView = convertView.findViewById(R.id.item_logo_view);
+                    viewHolder.itemFootView = convertView.findViewById(R.id.item_footer_view);
+                    viewHolder.ad_layout_view = convertView.findViewById(R.id.video_ad_layout);
                     break;
                 case CARD_TYPE_ONE:
                     viewHolder = new ViewHolder();
-                    convertView = inflater.inflate(R.layout.item_home_request_one_layout,parent,false);
+                    convertView = inflater.inflate(R.layout.item_home_request_one_layout,null,false);
                     viewHolder.itemInfoView  = convertView.findViewById(R.id.item_info_view);
                     viewHolder.itemPriceView = convertView.findViewById(R.id.item_price_view);
                     viewHolder.itemTitleView = convertView.findViewById(R.id.item_title_view);
@@ -105,11 +114,21 @@ public class CourseAdapter extends BaseAdapter {
                     break;
                 case CARD_TYPE_TWO:
                     viewHolder = new ViewHolder();
-                    convertView = inflater.inflate(R.layout.item_home_request_two_layout, parent, false);
+                    convertView = inflater.inflate(R.layout.item_home_request_two_layout, null, false);
+                    viewHolder.itemInfoView  = convertView.findViewById(R.id.item_info_view);
+                    viewHolder.itemPriceView = convertView.findViewById(R.id.item_price_view);
+                    viewHolder.itemTitleView = convertView.findViewById(R.id.item_title_view);
+                    viewHolder.circleImageView = convertView.findViewById(R.id.item_logo_view);
+                    viewHolder.itemFootView = convertView.findViewById(R.id.item_footer_view);
+                    viewHolder.itemFromView = convertView.findViewById(R.id.item_from_view);
+                    viewHolder.itemZanView = convertView.findViewById(R.id.item_zan_view);
+                    viewHolder.product_view = convertView.findViewById(R.id.product_photo_view);
                     break;
                 case CARD_TYPE_THREE:
                     viewHolder = new ViewHolder();
                     convertView = inflater.inflate(R.layout.item_home_request_three_layout, null, false);
+                    viewHolder.item_viewPager =  convertView.findViewById(R.id.pager);
+
                     break;
             }
             convertView.setTag(viewHolder);
@@ -122,6 +141,10 @@ public class CourseAdapter extends BaseAdapter {
         //填充item的数据
         switch (type) {
             case CARD_VIDEO_TYPE:
+                viewHolder.itemInfoView.setText(data.info);
+                viewHolder.itemTitleView.setText(data.title);
+                imageUtils.showImageView(context,R.drawable.default_user_avatar,data.logo,viewHolder.circleImageView);
+                viewHolder.itemFootView.setText(data.text);
                 break;
             case CARD_TYPE_ONE:
                 imageUtils.showImageView(context,R.drawable.default_user_avatar,data.logo,viewHolder.circleImageView);
@@ -137,11 +160,61 @@ public class CourseAdapter extends BaseAdapter {
                 }
                 break;
             case CARD_TYPE_TWO:
+                imageUtils.showImageView(context,R.drawable.default_user_avatar,data.logo,viewHolder.circleImageView);
+                viewHolder.itemTitleView.setText(data.title);
+                viewHolder.itemPriceView.setText(data.price);
+                viewHolder.itemInfoView.setText(data.info);
+                viewHolder.itemFootView.setText(data.text);
+                viewHolder.itemFromView.setText(data.from);
+                viewHolder.itemZanView.setText(data.zan);
+                imageUtils.showImageView(context,R.drawable.default_user_avatar,data.url.get(0),viewHolder.product_view);
                 break;
             case CARD_TYPE_THREE:
+                ArrayList<DataList> hotDataList = handleData(data);
+                HotDataPagerAdapter pagerAdapter = new HotDataPagerAdapter(hotDataList,context);
+                viewHolder.item_viewPager.setAdapter(pagerAdapter);
+                viewHolder.item_viewPager.setPageMargin(Utils.dip2px(context,12));
+                viewHolder.item_viewPager.setCurrentItem(hotDataList.size()*100);
                 break;
         }
         return convertView;
+    }
+
+    private ArrayList<DataList> handleData(DataList data) {
+        ArrayList<DataList> datas = new ArrayList<DataList>();
+        String[] tittles = data.title.split("@");
+        String[] prices = data.price.split("@");
+        String[] infos = data.info.split("@");
+        String[] texts = data.text.split("@");
+        ArrayList<String> urls = new ArrayList<>();
+        int start = 0;
+        for(int i=0; i<tittles.length; i++){
+            DataList tempData = new DataList();
+            tempData.title = tittles[i];
+            tempData.price = prices[i];
+            tempData.info = infos[i];
+            tempData.text =texts[i];
+            urls = handUrls(data.url,start,3);
+            tempData.url= urls;
+            start+=3;
+            datas.add(tempData);
+        }
+        return datas;
+    }
+
+    /**
+     *
+     * @param url 原始URL 数组
+     * @param start Url截取的起始地址
+     * @param j  间隔
+     * @return
+     */
+    private ArrayList<String> handUrls(ArrayList<String> url, int start, int j) {
+        ArrayList<String> tempUrl = new ArrayList<>();
+        for (int i=start;i<start+j;i++){
+            tempUrl.add(url.get(i));
+        }
+        return tempUrl;
     }
 
     private ImageView addImageView(String url) {
@@ -163,6 +236,7 @@ public class CourseAdapter extends BaseAdapter {
      */
     public static class ViewHolder{
 
+        //type one
         private CircleImageView circleImageView;
         private TextView itemTitleView;
         private TextView itemPriceView;
@@ -172,6 +246,16 @@ public class CourseAdapter extends BaseAdapter {
         private TextView itemFootView;
         private TextView itemFromView;
         private TextView itemZanView;
+
+        //type two
+        private ImageView product_view;
+
+        //type zero
+        private ImageView share_view;
+        private RelativeLayout ad_layout_view;
+
+        //type three
+        private ViewPager item_viewPager;
     }
 
     public void setDatas(ArrayList<DataList> list){
