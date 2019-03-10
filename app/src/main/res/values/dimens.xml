@@ -22,4 +22,8 @@
     <dimen name="text_small">20dp</dimen>
     <dimen name="text_middle">25dp</dimen>
     <dimen name="text_big">30dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_27">27dp</dimen>
+    <dimen name="dp_29">29dp</dimen>
+    <dimen name="sp_12">12sp</dimen>
 </resources>
