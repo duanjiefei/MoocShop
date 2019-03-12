@@ -86,7 +86,10 @@ public class GuideActivity extends BaseActivity {
     }
 
     private void endTutorial() {
-        startActivity(new Intent(this, HomeActivity.class));
+
+
+        //startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this,SplashVideoActivity.class));
         SPManager.getInstance().putBoolean(SPManager.IS_SHOW_GUIDE,true);
         finish();
     }
