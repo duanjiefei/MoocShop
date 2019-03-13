@@ -42,19 +42,28 @@ public class SplashVideoActivity extends BaseActivity {
                 mp.start();
             }
         });
-
-        countDownTimerView = new CountDownTimerView(5, new CountDownTimerView.ICountDownHandle() {
+        countDownTimerView = new CountDownTimerView(50, new CountDownTimerView.ICountDownHandle() {
             @Override
             public void onTicker(int time) {
                 tv_Timer.setText(time+"秒");
+                tv_Timer.setEnabled(false);
             }
 
             @Override
             public void finish() {
                 tv_Timer.setText("跳过");
-                startActivity(new Intent(SplashVideoActivity.this,HomeActivity.class));
+                tv_Timer.setEnabled(true);
             }
         });
+
+        tv_Timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SplashVideoActivity.this,HomeActivity.class));
+                finish();
+            }
+        });
+
     }
 
     @Override

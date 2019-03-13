@@ -21,7 +21,8 @@ public class SplashActivity extends BaseActivity {
             if (!isShowGuide){
                 startGuideActivity();
             }else {
-                startHomeActivity();
+                //startHomeActivity();
+                startSplashVideoActivity();
             }
             finish();
         }
@@ -29,6 +30,11 @@ public class SplashActivity extends BaseActivity {
 
     private void startGuideActivity() {
         Intent intent = new Intent(this,GuideActivity.class);
+        startActivity(intent);
+    }
+
+    private void startSplashVideoActivity(){
+        Intent intent = new Intent(this,SplashVideoActivity.class);
         startActivity(intent);
     }
 

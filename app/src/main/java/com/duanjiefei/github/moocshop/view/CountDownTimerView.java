@@ -27,7 +27,7 @@ public class CountDownTimerView implements Runnable{
     @Override
     public void run() {
         if (isRun){
-            if (time > 0){
+            if (time > 1){
                 time --;
                 countDownTime = time;
                 if (iCountDownHandle!=null){
