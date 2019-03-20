@@ -12,6 +12,7 @@ import android.widget.VideoView;
 import com.duanjiefei.github.moocshop.R;
 import com.duanjiefei.github.moocshop.activity.base.BaseActivity;
 import com.duanjiefei.github.moocshop.view.CountDownTimerView;
+import com.duanjiefei.github.moocshop.view.FullScreenVideoView;
 
 import java.io.File;
 
@@ -19,7 +20,7 @@ public class SplashVideoActivity extends BaseActivity {
 
 
     private TextView tv_Timer;
-    private VideoView vv_Splash;
+    private FullScreenVideoView vv_Splash;
     private CountDownTimerView countDownTimerView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class SplashVideoActivity extends BaseActivity {
                 mp.start();
             }
         });
-        countDownTimerView = new CountDownTimerView(50, new CountDownTimerView.ICountDownHandle() {
+        countDownTimerView = new CountDownTimerView(5, new CountDownTimerView.ICountDownHandle() {
             @Override
             public void onTicker(int time) {
                 tv_Timer.setText(time+"秒");
@@ -63,13 +64,13 @@ public class SplashVideoActivity extends BaseActivity {
                 finish();
             }
         });
-
+        countDownTimerView.startTimer();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        countDownTimerView.startTimer();
+
     }
 
 
