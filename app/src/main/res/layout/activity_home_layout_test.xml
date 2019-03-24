@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fac"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_80"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:layout_alignParentBottom="true">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:id="@+id/one_page">
+            <RadioButton
+                android:id="@+id/tab_home"
+                android:text="@string/home_image_view_text"
+                android:drawableTop="@drawable/home"
+                style="@style/radio_button_style" />
+            <RadioButton
+                android:id="@+id/tab_pond"
+                android:text="@string/pond_image_view_text"
+                android:drawableTop="@drawable/pond"
+                style="@style/radio_button_style" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:id="@+id/two_page"
+            android:visibility="gone">
+            <RadioButton
+                android:id="@+id/tab_message"
+                android:text="@string/message_image_view_text"
+                android:drawableTop="@drawable/message"
+                style="@style/radio_button_style"  />
+            <RadioButton
+                android:id="@+id/tab_mine"
+                android:text="@string/mine_image_view_text"
+                android:drawableTop="@drawable/mine"
+                style="@style/radio_button_style" />
+        </RadioGroup>
+    </FrameLayout>
+
+</RelativeLayout>

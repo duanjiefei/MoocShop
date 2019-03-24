@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import com.duanjiefei.github.moocshop.R;
 import com.duanjiefei.github.moocshop.activity.base.BaseActivity;
 import com.duanjiefei.github.moocshop.manager.SPManager;
+import com.duanjiefei.github.moocshop.netbase.SplashVideoActivity;
 
 public class SplashActivity extends BaseActivity {
 

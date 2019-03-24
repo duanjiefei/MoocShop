@@ -14,6 +14,7 @@ import com.duanjiefei.github.moocshop.R;
 import com.duanjiefei.github.moocshop.activity.base.BaseActivity;
 import com.duanjiefei.github.moocshop.fragement.GuideFragment;
 import com.duanjiefei.github.moocshop.manager.SPManager;
+import com.duanjiefei.github.moocshop.netbase.SplashVideoActivity;
 import com.nineoldandroids.view.ViewHelper;
 
 public class GuideActivity extends BaseActivity {

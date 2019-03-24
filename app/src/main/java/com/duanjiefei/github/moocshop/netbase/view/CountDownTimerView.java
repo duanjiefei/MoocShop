@@ -1,4 +1,4 @@
-package com.duanjiefei.github.moocshop.view;
+package com.duanjiefei.github.moocshop.netbase.view;
 
 
 import android.os.Handler;

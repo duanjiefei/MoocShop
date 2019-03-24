@@ -1,4 +1,4 @@
-package com.duanjiefei.github.moocshop.activity;
+package com.duanjiefei.github.moocshop.netbase;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.duanjiefei.github.moocshop.R;
+import com.duanjiefei.github.moocshop.activity.HomeActivity;
 import com.duanjiefei.github.moocshop.activity.base.BaseActivity;
-import com.duanjiefei.github.moocshop.view.CountDownTimerView;
-import com.duanjiefei.github.moocshop.view.FullScreenVideoView;
+import com.duanjiefei.github.moocshop.netbase.activity.HomeActivity_;
+import com.duanjiefei.github.moocshop.netbase.view.CountDownTimerView;
+import com.duanjiefei.github.moocshop.netbase.view.FullScreenVideoView;
 
 import java.io.File;
 
@@ -60,7 +61,7 @@ public class SplashVideoActivity extends BaseActivity {
         tv_Timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SplashVideoActivity.this,HomeActivity.class));
+                startActivity(new Intent(SplashVideoActivity.this,HomeActivity_.class));
                 finish();
             }
         });

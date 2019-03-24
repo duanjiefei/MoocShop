@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <com.duanjiefei.github.moocshop.view.FullScreenVideoView
+    <com.duanjiefei.github.moocshop.netbase.view.FullScreenVideoView
         android:id="@+id/vv_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

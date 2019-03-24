@@ -26,7 +26,8 @@
         <activity android:name=".activity.GuideActivity">
 
         </activity>
-        <activity android:name=".activity.SplashVideoActivity"/>
+        <activity android:name=".netbase.SplashVideoActivity"/>
+        <activity android:name=".netbase.activity.HomeActivity_"/>
     </application>
 
 
