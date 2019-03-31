@@ -22,15 +22,25 @@ public class SplashVideoActivity extends BaseActivity {
 
     private TextView tv_Timer;
     private FullScreenVideoView vv_Splash;
-    private CountDownTimerView countDownTimerView;
+    private  SplashTimerPresenter timerPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashvideo_layout);
-        vv_Splash = findViewById(R.id.vv_splash);
-        tv_Timer = findViewById(R.id.tv_splash_timer);
+        initView();
+        initData();
+        initListener();
 
+        timerPresenter = new SplashTimerPresenter(this);
+    }
+
+
+
+    private void initData() {
         vv_Splash.setVideoURI(Uri.parse("android.resource://"+getPackageName()+File.separator+R.raw.splash));
+    }
+
+    private void initListener() {
         vv_Splash.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
@@ -44,19 +54,6 @@ public class SplashVideoActivity extends BaseActivity {
                 mp.start();
             }
         });
-        countDownTimerView = new CountDownTimerView(5, new CountDownTimerView.ICountDownHandle() {
-            @Override
-            public void onTicker(int time) {
-                tv_Timer.setText(time+"秒");
-                tv_Timer.setEnabled(false);
-            }
-
-            @Override
-            public void finish() {
-                tv_Timer.setText("跳过");
-                tv_Timer.setEnabled(true);
-            }
-        });
 
         tv_Timer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +62,13 @@ public class SplashVideoActivity extends BaseActivity {
                 finish();
             }
         });
-        countDownTimerView.startTimer();
+
+
+    }
+
+    private void initView() {
+        vv_Splash = findViewById(R.id.vv_splash);
+        tv_Timer = findViewById(R.id.tv_splash_timer);
     }
 
     @Override
@@ -78,6 +81,16 @@ public class SplashVideoActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        countDownTimerView.cancle();
+        timerPresenter.cancle();
+    }
+
+    public void onTicker(int time) {
+        tv_Timer.setText(time+"秒");
+        tv_Timer.setEnabled(false);
+    }
+
+    public void completed() {
+        tv_Timer.setText("跳过");
+        tv_Timer.setEnabled(true);
     }
 }
