@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 
 import com.duanjiefei.github.moocshop.R;
 
-public class HomeActivity_ extends Activity implements View.OnClickListener {
+public class NetHomeActivity extends Activity implements View.OnClickListener {
     private FloatingActionButton fac;
     private RadioGroup tab_one_page;
     private RadioGroup tab_two_page;
